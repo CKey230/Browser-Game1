@@ -13,6 +13,8 @@
     margin: auto;
     background-color: white;
     margin-top: 10em;
+    
+    
 }
 
 #character {
@@ -21,7 +23,7 @@
     background-color: blue;
     position: relative;
     top: 250px;
-    left: 150px;
+    left: 40px;
     
 }
 
@@ -46,9 +48,6 @@
 
 @keyframes block{ 
     0%{left: 850px;}
-    100%{left:-10px;}
+    100%{left:-20px;}
 }
 
-.animate{
-    animation: jump 300ms linear;
-}

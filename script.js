@@ -1,23 +1,69 @@
-var character = document.getElementById("character");
-document.addEventListener("click",jump);
-function jump(){
-    
-    character.classList.add("animate");
-    setTimeout(removeJump,400); 
-};
-function removeJump(){
-    character.classList.remove("animate");
-}
+document.addEventListener('DOMContentLoaded', () => {
+    const character = document.querySelector(".character");
+    const game = document.querySelector('.block')
+    let characterJump = false
+    let gravity = 0.9
 
 
-
-var block = document.getElementById("block");
-function checkDead(){
-    let characterTop = parseInt(window.getComputedStyle(character).getPropertyValue("top"));
-    let blockLeft = parseInt(window.getComputedStyle(block).getPropertyValue("left"));
-    if(blockLeft<10 && blockLeft>-5 && characterTop>=230){
-        alert("Game over");
+    function control(e){
+        if (e.keyCode === 32){
+            if (!characterJump){
+                characterJump = true
+                jump()
+            }
+        
+        }
     }
-}
+    document.addEventListener('keydown', control)
+    let position = 0
 
-setInterval(checkDead, 10);
+    function jump(){
+        let count = 0 
+        let timerId = setInterval(function () {
+
+            if (count === 15) {
+                clearInterval(timerId)
+                let downTimerId = setInterval(function(){
+                    if (count === 0){
+                        clearInterval(downTimerId)
+                        characterJump = false  
+                    }
+                    
+                    position -= 5
+                    count --
+                    position = position * gravity
+               character.style.bottom = position + 'px'
+                
+ 
+                }, 20)
+            }
+            
+
+                count ++
+                position += 30
+                position = position * gravity
+              character.style.bottom = position + 'px'
+            
+            
+
+        }, 30)
+    }
+   
+
+
+
+
+
+
+
+
+
+
+
+})
+
+
+
+
+
+

@@ -2,69 +2,59 @@
 
 document.addEventListener('DOMContentLoaded', () => {
    
-    //Browser scaling
+    
 
-    const WORLD_WIDTH = 100
-    const WORLD_HEIGHT = 30
-
-
-
-
-    const worldElem = document.querySelector('[data-world');
-    const scoringElem = document.querySelector('[data-score');
+    const character = document.querySelector(".character");
+    const game = document.querySelector('.game') 
+    const prompt = document.getElementById('prompt')
+    
     const startScreenElem = document.querySelector('[data-start-screen]')
-
-
-    setPixentoWorldScale()
-    window.addEventListener("resize",setPixentoWorldScale)
-    document.addEventListener("keydown", handleStart, {once: true} )
+    document.addEventListener("keydown", startScreen, {once: true} )
   
-
-   
-
+    let characterJump = false;
+    let gravity = 0.9 ;
+    let isGameOver = false;
+    var score = 0 
+    var highScore = 0
     let lastTime
-    let score
-    function update(time){
+    
+     function update(time){
         if (lastTime != null){
             lastTime = time
             
         window.requestAnimationFrame(update)
         return
         }
-        const delta = time - lastTime
-        lastTime = time
         window.requestAnimationFrame(update)
     }
-
- 
-    function handleStart() {
+ //start screen
+    function startScreen() {
         lastTime = null
-        score = 0
         startScreenElem.classList.add("hide")
         window.requestAnimationFrame(update)
     }
 
-    //minimize expand browser
-    function setPixentoWorldScale(){
-        let worldToPixelScale
-        if(window.innerWidth / window.innerHeight < WORLD_WIDTH / WORLD_HEIGHT)
+    function getHighScore(){
+        if(localStorage.getItem("highScore") != null)
         {
-            worldToPixelScale = window.innerWidth / WORLD_WIDTH
-        } else {
-            worldToPixelScale = window.innerHeight / WORLD_HEIGHT
+            highScore = localStorage.getItem("highScore");
         }
-        worldElem.style.width = '${WORLD_WIDTH * worldToPixelScale}px'
-        worldElem.style.height = '${WORLD_HEIGHT * worldToPixelScale}px'
     }
 
-    const character = document.querySelector(".character");
-    const game = document.querySelector('.game') 
-    const prompt = document.getElementById('prompt')
-    const scoreElem =document.querySelector("[data-score]")
-    let characterJump = false
-    let gravity = 0.9
-    let isGameOver = false
 
+    //keeping score
+   window.onload = function () { 
+        getHighScore()
+        generateBlock();
+        setInterval(function(){
+            score += 1;
+            var userScore = document.getElementById('score');
+            userScore.innerHTML = "High Score: " + highScore  + " Score " + score;
+
+        },100)
+
+
+    }
 //space bar for jumping
     function control(e){
         if (e.keyCode === 32){
@@ -83,10 +73,10 @@ document.addEventListener('DOMContentLoaded', () => {
         let count = 0 
         let timerId = setInterval(function () {
 
-            if (count === 15) {
+            if (count === 18 ) {
                 clearInterval(timerId)
                 let downTimerId = setInterval(function(){
-                    if (count === 0){
+                    if (count === 1){
                         clearInterval(downTimerId)
                         characterJump = false  
                     }
@@ -101,14 +91,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             
 
-                count ++
-                position += 40
+                 count ++
+                position += 50 
                 position = position * gravity
               character.style.bottom = position + 'px'
             
             
 
-        }, 15)
+        }, 10)
     }
    //blocks generated
      function generateBlock() {
@@ -116,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let blockPosition = 1000
         const block = document.createElement('div')
         
-
+ 
         //check if dead
        if (!isGameOver) block.classList.add('block')
         game.appendChild(block)
@@ -126,23 +116,26 @@ document.addEventListener('DOMContentLoaded', () => {
         // timer for blocks
         let timerId = setInterval(function (){
             if (blockPosition > 0 && blockPosition < 60 && position < 60) {
-                clearInterval(timerId)
-                prompt.innerHTML = 'Game Over'
-                isGameOver = true
-
+                clearInterval(timerId);
+                prompt.innerHTML = 'Game Over';
+                isGameOver = true;
+                highScore = score;
+                localStorage.getItem("highScore",highScore);
+                
                  
                 //remove div's after 'game over'
                 while (game.firstChild) {
                     game.removeChild(game.lastChild)
                 }
             }
-            blockPosition -= 7
-            block.style.left = blockPosition + 'px'
-         
+            blockPosition -= 7;
+            block.style.left = blockPosition + 'px';
+            
         },15)
        if (!isGameOver) setTimeout(generateBlock, randomTime)
+        
       }
-      generateBlock()
+      generateBlock();
 
 
    

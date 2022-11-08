@@ -14,13 +14,15 @@ document.addEventListener('DOMContentLoaded', () => {
     let characterJump = false;
     let gravity = 0.9 ;
     let isGameOver = false;
-    var score = 0 
-    var highScore = 0
+    let score = 0 
+    let highScore = 0
     let lastTime
+   
     
-     function update(time){
+     function update(timerId){
         if (lastTime != null){
-            lastTime = time
+            lastTime = timerId
+          
             
         window.requestAnimationFrame(update)
         return
@@ -33,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         startScreenElem.classList.add("hide")
         window.requestAnimationFrame(update)
     }
-
+//local storage for highscore 
     function getHighScore(){
         if(localStorage.getItem("highScore") != null)
         {
@@ -42,13 +44,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    //keeping score
+    //keeping score 
    window.onload = function () { 
         getHighScore()
         generateBlock();
         setInterval(function(){
             score += 1;
-            var userScore = document.getElementById('score');
+            let userScore = document.getElementById('score');
             userScore.innerHTML = "High Score: " + highScore  + " Score " + score;
 
         },100)
@@ -65,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         }
     }
-    document.addEventListener('keydown', control)
+    document.addEventListener('keydown', control,)
     let position = 0
 
 //jump time function
@@ -89,7 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
  
                 }, 20)
             }
-            
 
                  count ++
                 position += 50 
@@ -102,9 +103,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
    //blocks generated
      function generateBlock() {
-        let randomTime = Math.random() * 2500
+         
+        let randomTime = Math.random() * 3200
         let blockPosition = 1000
         const block = document.createElement('div')
+        
+        
         
  
         //check if dead
@@ -113,17 +117,32 @@ document.addEventListener('DOMContentLoaded', () => {
         block.style.left = blockPosition + 'px'
 
 
+
         // timer for blocks
         let timerId = setInterval(function (){
             if (blockPosition > 0 && blockPosition < 60 && position < 60) {
                 clearInterval(timerId);
                 prompt.innerHTML = 'Game Over';
                 isGameOver = true;
-                highScore = score;
-                localStorage.getItem("highScore",highScore);
-                
+                if (score > highScore) {
+                    highScore = score
+                }
+               
+                localStorage.setItem("highScore",highScore);
                  
-                //remove div's after 'game over'
+              
+              
+                //restart button
+                const button = document.createElement('button');
+                const text = document.createTextNode("Restart");
+                button.appendChild(text);
+                prompt.appendChild(button);
+                prompt.addEventListener("click", function(e){
+                    location.reload()
+                })
+               
+            
+         //remove div's after 'game over'
                 while (game.firstChild) {
                     game.removeChild(game.lastChild)
                 }
@@ -135,24 +154,13 @@ document.addEventListener('DOMContentLoaded', () => {
        if (!isGameOver) setTimeout(generateBlock, randomTime)
         
       }
-      generateBlock();
-
-
-   
-   
-
-
-
-
-
-
-
+      
 
 
 })
 
 
-
+ 
 
 
 

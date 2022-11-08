@@ -14,9 +14,11 @@ body {
 
 
 
+
 .game{
     overflow: hidden;
     text-align: center;
+   
     
     
    
@@ -24,9 +26,9 @@ body {
 
 }
 .character {
-    --bottom: 0;
+    bottom: 0;
     position: absolute;
-   left: 1%;
+    left: 1%;
    
    
   
@@ -46,9 +48,8 @@ body {
 
 #scoring { 
    position: absolute;
-   font-size: 3vmin;
-   right: 1vmin;
-   top:  1vmin;
+   right: 2%
+  
 }
 
 .start-screen{
@@ -67,8 +68,15 @@ body {
 
 
 #prompt {
+    
     position: absolute;
     font-size: 5vmin;
     top: 50%;
     left: 45%;
+    
+}
+
+#button{
+    display: inline-block;
+
 }

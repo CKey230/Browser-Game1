@@ -101,10 +101,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         }, 10)
     }
+    
    //blocks generated
      function generateBlock() {
          
-        let randomTime = Math.random() * 3200
+        let randomTime = (Math.random() * 3200) + 200;
+        
         let blockPosition = 1000
         const block = document.createElement('div')
         

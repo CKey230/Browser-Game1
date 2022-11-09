@@ -28,30 +28,41 @@ document.addEventListener('DOMContentLoaded', () => {
         return
         }
         window.requestAnimationFrame(update)
+       
     }
  //start screen
     function startScreen() {
         lastTime = null
         startScreenElem.classList.add("hide")
         window.requestAnimationFrame(update)
+       
     }
+    
 //local storage for highscore 
     function getHighScore(){
+          
         if(localStorage.getItem("highScore") != null)
+        
+
         {
+
             highScore = localStorage.getItem("highScore");
         }
     }
-
-
+    
+   
     //keeping score 
    window.onload = function () { 
+        
         getHighScore()
         generateBlock();
+
+        
         setInterval(function(){
             score += 1;
             let userScore = document.getElementById('score');
             userScore.innerHTML = "High Score: " + highScore  + " Score " + score;
+            
 
         },100)
 
@@ -102,11 +113,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 10)
     }
     
+    
    //blocks generated
      function generateBlock() {
-         
-        let randomTime = (Math.random() * 3200) + 200;
-        
+       
+        let randomTime = (Math.random() * 3200) + 400; //generate obstacles at random 
+    
         let blockPosition = 1000
         const block = document.createElement('div')
         
@@ -124,19 +136,22 @@ document.addEventListener('DOMContentLoaded', () => {
         let timerId = setInterval(function (){
             if (blockPosition > 0 && blockPosition < 60 && position < 60) {
                 clearInterval(timerId);
-                prompt.innerHTML = 'Game Over';
+                prompt.innerHTML = 'Game Over'; //gameover prompt
                 isGameOver = true;
+
+
                 if (score > highScore) {
                     highScore = score
                 }
                
-                localStorage.setItem("highScore",highScore);
-                 
+                localStorage.setItem("highScore",highScore); // local storage kept for highscore
+
+                
               
               
                 //restart button
                 const button = document.createElement('button');
-                const text = document.createTextNode("Restart");
+                const text = document.createTextNode("Click to Restart");
                 button.appendChild(text);
                 prompt.appendChild(button);
                 prompt.addEventListener("click", function(e){

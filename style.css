@@ -36,9 +36,9 @@ body {
 }
 
 .block {
-    width: 30px;
+    width: 100px;
     height: 60px;
-    background-color: red;
+   background-repeat: no-repeat;
     position: absolute;
     bottom: 0px;
    

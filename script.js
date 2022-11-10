@@ -9,8 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const prompt = document.getElementById('prompt')
     
     const startScreenElem = document.querySelector('[data-start-screen]')
-    document.addEventListener("keydown", startScreen, {once: true} )
-  
+    window.addEventListener("keydown", startScreen,{once: true} )
+ 
     let characterJump = false;
     let gravity = 0.9 ;
     let isGameOver = false;
@@ -22,19 +22,15 @@ document.addEventListener('DOMContentLoaded', () => {
      function update(timerId){
         if (lastTime != null){
             lastTime = timerId
-          
-            
-        window.requestAnimationFrame(update)
-        return
         }
-        window.requestAnimationFrame(update)
+        
        
     }
  //start screen
     function startScreen() {
         lastTime = null
         startScreenElem.classList.add("hide")
-        window.requestAnimationFrame(update)
+        
        
     }
     
@@ -120,7 +116,14 @@ document.addEventListener('DOMContentLoaded', () => {
         let randomTime = (Math.random() * 3200) + 400; //generate obstacles at random 
     
         let blockPosition = 1000
-        const block = document.createElement('div')
+        const block = document.createElement('img')
+        block.dataset.block = true
+        block.src = "/assets/block1.png";
+        block.classList.add('block')
+        game.append(block)
+       
+
+
         
         
         
@@ -128,7 +131,8 @@ document.addEventListener('DOMContentLoaded', () => {
         //check if dead
        if (!isGameOver) block.classList.add('block')
         game.appendChild(block)
-        block.style.left = blockPosition + 'px'
+        block.style.left = blockPosition + 'block'
+
 
 
 

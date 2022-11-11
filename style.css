@@ -1,3 +1,4 @@
+/*global CSS*/
 *, *::before, *::after{
     box-sizing: border-box;
     user-select: none;
@@ -5,11 +6,10 @@
 
 body {
     align-items: center;
-  
-   
 }
+
+/*animated background for body*/
 #background-video{
-    
     object-fit: cover;
     position: fixed;
     left: 0;
@@ -20,7 +20,7 @@ body {
 }
 
 
-/*hide game overflow*/
+/*hide block overflow*/
 .game{
     overflow: hidden;
    
@@ -42,10 +42,8 @@ body {
    background-repeat: no-repeat;
     position: absolute;
     bottom: 0px;
-   
-    
-
 }
+
 /*scoring display*/
 #score { 
    border-style: border-box;
@@ -53,22 +51,22 @@ body {
    font-size: 3vmin;
    left: 70%;
    z-index: 100;
-  
 }
+
 /*direction at start of game*/
 .start-screen{
     position: absolute;
     font-size: 5vmin;
     top: 30%;
     left: 38%;
-    
 }
+
 /*png image for start screen*/
 .watch-your-step{
         display: block;
-        text-align: center;
-        
+        text-align: center; 
 }
+
 /*css class for hiding start screen display*/
 .hide{
     display:none;
@@ -80,16 +78,12 @@ body {
     font-size: 5vmin;
     top: 30%;
     left: 40%;
-
-    
 }
+
 /*restart button for gameOver*/
  button{
     font-size: 3vmin;
     display: block;
     background-color: black;
     color: white;
-
-  
-
 }

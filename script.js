@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let blockPosition = 1000
         const block = document.createElement('img')
         block.dataset.block = true
-        block.src = "/assets/block1.png";
+        block.src = "/Assets/block1.png";
         block.classList.add('block')
         game.append(block)
        
@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 //displaying score
                 if (score > highScore) {
                     highScore = score
-                    timerId()
+                   
                 }
                
                 localStorage.setItem("highScore",highScore); // local storage for highscore
@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
        if (!isGameOver) setTimeout(generateBlock, randomTime) //if game is not over blocks keep running
         
       }
-      
+
 })
 
 

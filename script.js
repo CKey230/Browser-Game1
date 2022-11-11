@@ -44,6 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
             score += 1;
             let userScore = document.getElementById('score');
             userScore.innerHTML = "High Score: " + highScore  + " Score " + score;
+            
         },100)
     }
 
@@ -97,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let blockPosition = 1000
         const block = document.createElement('img')
         block.dataset.block = true
-        block.src = "/assets/block1.png";
+        block.src = "/assets/Block1.png";
         block.classList.add('block')
         game.append(block)
        

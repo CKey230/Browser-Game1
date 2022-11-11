@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 //displaying score
                 if (score > highScore) {
                     highScore = score
-                    timerId()
+                    
                 }
                
                 localStorage.setItem("highScore",highScore); // local storage for highscore

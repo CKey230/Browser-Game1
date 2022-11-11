@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
        
     }
- //start screen
+ //prompt for start screen
     function startScreen() {
         lastTime = null
         startScreenElem.classList.add("hide")
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
    window.onload = function () { 
         
         getHighScore()
-        generateBlock();
+       generateBlock()
 
         
         setInterval(function(){
@@ -115,6 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
        
         let randomTime = (Math.random() * 3200) + 400; //generate obstacles at random 
     
+       
         let blockPosition = 1000
         const block = document.createElement('img')
         block.dataset.block = true
@@ -122,8 +123,6 @@ document.addEventListener('DOMContentLoaded', () => {
         block.classList.add('block')
         game.append(block)
        
-
-
         
         
         
@@ -136,26 +135,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+       
         // timer for blocks
         let timerId = setInterval(function (){
             if (blockPosition > 0 && blockPosition < 60 && position < 60) {
                 clearInterval(timerId);
-                prompt.innerHTML = 'Game Over'; //gameover prompt
+                prompt.innerHTML = " High Score: " + highScore;; //gameover prompt
                 isGameOver = true;
+               
 
 
                 if (score > highScore) {
                     highScore = score
+                    timerId()
                 }
                
-                localStorage.setItem("highScore",highScore); // local storage kept for highscore
+                localStorage.setItem("highScore",highScore); // local storage for highscore
 
                 
               
               
                 //restart button
+ 
+
                 const button = document.createElement('button');
-                const text = document.createTextNode("Click to Restart");
+                const text = document.createTextNode("Restart");
                 button.appendChild(text);
                 prompt.appendChild(button);
                 prompt.addEventListener("click", function(e){
@@ -170,13 +174,15 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             blockPosition -= 7;
             block.style.left = blockPosition + 'px';
+             
+            
+
             
         },15)
        if (!isGameOver) setTimeout(generateBlock, randomTime)
         
       }
       
-
 
 })
 

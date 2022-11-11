@@ -4,40 +4,33 @@
 }
 
 body {
-    margin: 0;
     align-items: center;
+   
     
    
    
 }
 
 
-
-
+/*hide game overflow*/
 .game{
     overflow: hidden;
    
-    
-   
-    
-    
-   
-   
 
 }
+
+/*character attributes*/
 .character {
     bottom: 0;
     position: absolute;
     left: 1%;
-   
-   
-  
-    
 }
 
+
+/*obstacle view*/
 .block {
     width: 100px;
-    height: 60px;
+    height: px;
    background-repeat: no-repeat;
     position: absolute;
     bottom: 0px;
@@ -45,38 +38,44 @@ body {
     
 
 }
-
-#scoring { 
+/*scoring display*/
+#score { 
+   border-style: border-box;
    position: absolute;
-   right: 2%;
+   font-size: 3vmin;
+   left: 70%;
    z-index: 100;
   
 }
-
+/*direction at start of game*/
 .start-screen{
     position: absolute;
     font-size: 5vmin;
-    top: 50%;
-    left:50%;
-    transform: translate(-50%, -50%);
-
+    top: 30%;
+    left: 38%;
+    
 }
-
+/*png image for start screen*/
+.watch-your-step{
+        display: block;
+        text-align: center;
+        
+}
+/*css class for hiding start screen display*/
 .hide{
     display:none;
 }
 
-
-
+/*prompt display for gameOver*/
 #prompt {
-    
     position: absolute;
     font-size: 5vmin;
-    top: 50%;
-    left: 45%;
+    top: 30%;
+    left: 40%;
+
     
 }
-
+/*restart button for gameOver*/
  button{
     font-size: 3vmin;
     display: block;

@@ -5,10 +5,18 @@
 
 body {
     align-items: center;
+  
    
+}
+#background-video{
     
-   
-   
+    object-fit: cover;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
 }
 
 
@@ -23,14 +31,14 @@ body {
 .character {
     bottom: 0;
     position: absolute;
-    left: 1%;
+    left: 2%;
 }
 
 
 /*obstacle view*/
 .block {
     width: 100px;
-    height: px;
+    height: 100px;
    background-repeat: no-repeat;
     position: absolute;
     bottom: 0px;

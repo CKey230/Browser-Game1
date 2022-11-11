@@ -7,17 +7,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const character = document.querySelector(".character");
     const game = document.querySelector('.game') 
     const prompt = document.getElementById('prompt')
-    
     const startScreenElem = document.querySelector('[data-start-screen]')
     window.addEventListener("keydown", startScreen,{once: true} )
- 
+    let myaudio = document.querySelector('#audio')
+
     let characterJump = false;
     let gravity = 0.9 ;
     let isGameOver = false;
     let score = 0 
     let highScore = 0
     let lastTime
-   
     
      function update(timerId){
         if (lastTime != null){
@@ -70,13 +69,15 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!characterJump){
                 characterJump = true
                 jump()
+                
+                
             }
         
         }
     }
-    document.addEventListener('keydown', control,)
+    document.addEventListener('keydown', control, myaudio)
     let position = 0
-
+    
 //jump time function
     function jump(){
         let count = 0 
@@ -94,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     count --
                     position = position * gravity
                character.style.bottom = position + 'px'
-                
+              
  
                 }, 20)
             }
@@ -103,8 +104,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 position += 50 
                 position = position * gravity
               character.style.bottom = position + 'px'
-            
-            
+              myaudio.play()
+             
 
         }, 10)
     }
@@ -131,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
        if (!isGameOver) block.classList.add('block')
         game.appendChild(block)
         block.style.left = blockPosition + 'block'
-
+        
 
 
 
@@ -142,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 clearInterval(timerId);
                 prompt.innerHTML = " High Score: " + highScore;; //gameover prompt
                 isGameOver = true;
-               
+                
 
 
                 if (score > highScore) {
@@ -165,11 +166,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 prompt.addEventListener("click", function(e){
                     location.reload()
                 })
-               
+              
             
          //remove div's after 'game over'
                 while (game.firstChild) {
                     game.removeChild(game.lastChild)
+                   
                 }
             }
             blockPosition -= 7;

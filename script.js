@@ -95,9 +95,10 @@ document.addEventListener('DOMContentLoaded', () => {
         let randomTime = (Math.random() * 3200) + 400; //generate obstacles at random 
     
         let blockPosition = 1000
+
         const block = document.createElement('img')
         block.dataset.block = true
-        block.src = "./assets/code1.png";
+        block.src = "./code1.png";
         block.classList.add('block')
         game.append(block)
        

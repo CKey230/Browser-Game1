@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         var block = document.createElement('img')
         block.dataset.block = true
-        block.src = ".assets/code1.png";
+        block.src = "./assets/code1.png";
         block.classList.add('block')
         game.append(block)
        
@@ -112,7 +112,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (blockPosition > 0 && blockPosition < 60 && position < 60) {
                 clearInterval(timerId);
                 //end of game prompt
-                prompt.innerHTML = " High Score: " + highScore;; //gameover prompt
+                prompt.innerHTML = " High Score: " + highScore;
+                score.innerHTML = prompt //gameover prompt
                 isGameOver = true;
                 //displaying score
                 if (score > highScore) {

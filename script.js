@@ -96,9 +96,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
         let blockPosition = 1000
 
-        const block = document.createElement('img')
+        var block = document.createElement('img')
         block.dataset.block = true
-        block.src = "./code1.png";
+        block.src = "/assets/code1.png";
         block.classList.add('block')
         game.append(block)
        
@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
         game.appendChild(block)
         block.style.left = blockPosition + 'block'
         
-        // timer for blocks 
+        // collision for blocks 
         let timerId = setInterval(function (){
             if (blockPosition > 0 && blockPosition < 60 && position < 60) {
                 clearInterval(timerId);

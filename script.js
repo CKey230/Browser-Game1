@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         var block = document.createElement('img')
         block.dataset.block = true
-        block.src = "/assets/code1.png";
+        block.src = ".assets/code1.png";
         block.classList.add('block')
         game.append(block)
        

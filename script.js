@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
  //prompt for start screen
     function startScreen() {
-        lastTime = null
         startScreenElem.classList.add("hide")
     }
     

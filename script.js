@@ -20,9 +20,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
  //prompt for start screen
-    function startScreen() {
-        startScreenElem.classList.add("hide")
-    }
+ function startScreen() {
+    startScreenElem.classList.add("hide");
+    prompt.innerHTML = "Press Spacebar to Start";
+    document.addEventListener("keydown", function startGame(e) {
+      if (e.keyCode === 32) {
+        document.removeEventListener("keydown", startGame);
+        generateBlock();
+      }
+    });
+  }
     
 //local storage for highscore 
     function getHighScore(){
@@ -42,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setInterval(function(){
             score += 1;
             let userScore = document.getElementById('score');
-            userScore.innerHTML = "High Score: " + highScore  + " Score " + score;
+            userScore.innerHTML = "HighScore: " + highScore  + " Score " + score;
             
         },100)
     }
@@ -112,8 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (blockPosition > 0 && blockPosition < 60 && position < 60) {
                 clearInterval(timerId);
                 //end of game prompt
-                prompt.innerHTML = " High Score: " + highScore;
-                score.innerHTML = prompt //gameover prompt
+                prompt.innerHTML = " High Score: " + highScore;;  //gameover prompt
                 isGameOver = true;
                 //displaying score
                 if (score > highScore) {
@@ -147,8 +153,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 })
 
-
- 
 
 
 

@@ -20,16 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
  //prompt for start screen
- function startScreen() {
-    startScreenElem.classList.add("hide");
-    prompt.innerHTML = "Press Spacebar to Start";
-    document.addEventListener("keydown", function startGame(e) {
-      if (e.keyCode === 32) {
-        document.removeEventListener("keydown", startGame);
-        generateBlock();
-      }
-    });
-  }
+    function startScreen() {
+        startScreenElem.classList.add("hide")
+    }
     
 //local storage for highscore 
     function getHighScore(){

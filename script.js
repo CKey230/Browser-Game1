@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
 //local storage for highscore 
+
     function getHighScore(){
           
         if(localStorage.getItem("highScore") != null)
@@ -32,11 +33,11 @@ document.addEventListener('DOMContentLoaded', () => {
             highScore = localStorage.getItem("highScore");
         }
     }
-    
+  
     //score starts when "block" is generated
    window.onload = function () { 
-        getHighScore()
-       generateBlock()
+        getHighScore();
+       generateBlock();
 
         //set interval for score/highscore
         setInterval(function(){
